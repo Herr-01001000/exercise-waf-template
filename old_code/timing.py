@@ -10,14 +10,15 @@ achieved at most 1000 times' speedup compared to pandas. The speed improvements
 
 import numpy as np
 import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
 from time import time
 from update import pandas_batch_update
 from update import fast_batch_update_np
 from update import fast_batch_update
-from update import fast_batch_update_tf
 
 # load and prepare data
-data = pd.read_stata("../chs_data.dta")
+data = pd.read_stata("../src/original_data/chs_data.dta")
 data.replace(-100, np.nan, inplace=True)
 data = data.query("age == 0")
 data.reset_index(inplace=True)
@@ -83,7 +84,7 @@ print("pandas_batch_update took {} seconds.".format(np.mean(runtimes)))
 
 # time the numpy function
 runtimes = []
-for i in range(20):
+for i in range(2):
     start = time()
     out_states_fast, out_root_covs_fast = fast_batch_update_np(
         states=states_np,
@@ -100,7 +101,7 @@ print("fast_batch_update_np took {} seconds.".format(np.mean(runtimes)))
 
 # time the numba function
 runtimes = []
-for i in range(100):
+for i in range(11):
     start = time()
     out_states_fast, out_root_covs_fast = fast_batch_update(
         states=states_np,
@@ -115,18 +116,25 @@ for i in range(100):
 print("fast_batch_update took {} seconds.".format(np.mean(runtimes[1:])))
 
 
-# time the TensorFlow function
-#runtimes = []
-#for i in range(2):
-#    start = time()
-#    out_states_fast, out_root_covs_fast = fast_batch_update_tf(
-#        states=states_np,
-#        root_covs=root_covs_np,
-#        measurements=meas_bwght_np,
-#        loadings=loadings_bwght_np,
-#        meas_var=meas_var_bwght,
-#    )
-#    stop = time()
-#    runtimes.append(stop - start)
+runtimes = pd.DataFrame(columns=['obs','times'])
+for i in range(len(states_np)):
+    for j in range(11):
+        start = time()
+        out_states_fast, out_root_covs_fast = fast_batch_update(
+            states=states_np[:i],
+            root_covs=root_covs_np[:i],
+            measurements=meas_bwght_np[:i],
+            loadings=loadings_bwght_np,
+            meas_var=meas_var_bwght,
+        )
+        stop = time()
+        runtimes = runtimes.append({'obs':i,'times':(stop-start)},ignore_index=True)
 
-print("fast_batch_update_tf took {} seconds.".format(np.mean(runtimes)))
+for i in range(len(runtimes)):
+    if i % 11 == 0:
+        runtimes = runtimes.drop([i])
+        
+sns.set(color_codes=True)
+sns.regplot(x='obs', y='times', data=runtimes, order=3, marker='.')
+plt.savefig('../bld/regplot_runtimes.png')
+plt.show()
