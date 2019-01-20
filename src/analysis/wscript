@@ -1,5 +1,7 @@
 #! python
 
+import os
+
 
 def build(ctx):
 
@@ -16,8 +18,16 @@ def build(ctx):
             ],
             target=[
                 ctx.path_to(ctx, 'OUT_ANALYSIS', 'timing_{}.pickle'.format(model)),
-                #ctx.path_to(ctx, 'OUT_ANALYSIS', 'log', 'timing_{}.log'.format(model))
+                ctx.path_to(ctx, 'OUT_ANALYSIS', 'log', 'timing_{}.log'.format(model))
             ],
             append=model,
             name='timing_{}'.format(model)
+        )
+
+        abspath = os.path.join(ctx.path.abspath(), 'test_update.py')
+        ctx(
+            features='run_py_script',
+            source='test_update.py',
+            deps=ctx.path_to(ctx, 'IN_MODEL_CODE', 'update.py'),
+            append=abspath
         )
