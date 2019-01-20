@@ -1,5 +1,7 @@
 {
     "state_names": ["cog", "noncog", "mother_cog", "mother_noncog", "investments"],
     "meas_var_bwght": 0.8,
-    "loadings_bwght_np": [1.0, 0, 0, 0, 0]
+    "loadings_bwght_np": [1.0, 0, 0, 0, 0],
+    "require_same_type": 4,
+    "rng_seed": 54321
 }

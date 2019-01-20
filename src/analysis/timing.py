@@ -10,7 +10,7 @@ achieved at most 1000 times' speedup compared to pandas. The speed improvements
 
 import sys
 import json
-#import logging
+import logging
 import pickle
 import numpy as np
 import pandas as pd
@@ -76,13 +76,13 @@ if __name__ == "__main__":
     model_name = sys.argv[1]
     model = json.load(open(ppj("IN_MODEL_SPECS", model_name + ".json"), encoding="utf-8"))
 
-#    logging.basicConfig(
-#        filename=ppj("OUT_ANALYSIS", "log", "timing_{}.log".format(model_name)),
-#        filemode="w",
-#        level=logging.INFO
-#    )
-#    np.random.seed(model["rng_seed"])
-#    logging.info(model["rng_seed"])
+    logging.basicConfig(
+        filename=ppj("OUT_ANALYSIS", "log", "timing_{}.log".format(model_name)),
+        filemode="w",
+        level=logging.INFO
+    )
+    np.random.seed(model["rng_seed"])
+    logging.info(model["rng_seed"])
 
     # Run the main analysis
     runtimes = run_analysis(states_np, root_covs_np, meas_bwght_np, loadings_bwght_np, meas_var_bwght)
