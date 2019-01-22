@@ -18,10 +18,10 @@ import matplotlib.pyplot as plt
 
 from bld.project_paths import project_paths_join as ppj
 
-def plot_regressions(runtimes, model_name):
+def plot_regressions(runtimes, order, model_name):
     sns.set(color_codes=True)
-    sns.regplot(x='obs', y='times', data=runtimes, order=3, marker='.')
-    plt.savefig(ppj("OUT_FIGURES", "timing_{}.png".format(model_name)))
+    sns.regplot(x='obs', y='times', data=runtimes, order=order, marker='.')
+    plt.savefig(ppj("OUT_FIGURES", "timing_{}_order_{}.png".format(model_name, order)))
         
 if __name__ == "__main__":
     model_name = sys.argv[1]
@@ -31,4 +31,5 @@ if __name__ == "__main__":
     with open(ppj("OUT_ANALYSIS", "timing_{}.pickle".format(model_name)), "rb") as in_file:
         runtimes = pickle.load(in_file)
 
-    plot_regressions(runtimes, model_name)
+    for order in [1,2,3,4,5]:
+        plot_regressions(runtimes, order, model_name)
