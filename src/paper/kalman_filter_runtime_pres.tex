@@ -24,11 +24,10 @@
 
 \begin{document}
 
-\title{assignment-6-group-7}
+\title{Relation between Number of Observations and Runtime}
 
-\author[Ruizhuo Wan]
+\author[Group 7: Wenxin Hu, Ruizhuo Wan, Yan Zhang, Xiaoran Wu, Tianfan Sun]
 {
-{\bf Ruizhuo Wan}\\
 {\small Uni Bonn}\\[1ex]
 }
 
@@ -39,12 +38,95 @@
 \end{frame}
 
 
+\begin{frame}
+        Introduction
+\end{frame}
+
+
+\begin{frame}
+        In past assignments we realized Kalman filter with python and tried with multiple
+        methods to achieve calculation speedups. In last assignment the most optimized speed-up was achieved with numba by 714 times. \\
+
+        In this assignment we look into the relationships of optimized runtime with the size of the dataset.
+\end{frame}
+
+
+\begin{frame}
+        Method
+\end{frame}
+
+
+\begin{frame}
+        The process:
+        \begin{enumerate}
+                \item Experiment with polynomial orders of 1, 2, 3, 4, 5
+                \item Create a dataframe of 2 columns: number of observables and runtimes
+                \item Plot
+        \end{enumerate}
+\end{frame}
+
+
+\begin{frame}
+        The polynomial regressions are as follows:\\
+        \input{formulas/regression_model}
+\end{frame}
+
+
+\begin{frame}
+        \begin{figure}
+    \caption{Regression plot of polynomial order 1}
+    \includegraphics[width=\textwidth]{../../out/figures/timing_baseline_order_1}
+        \end{figure}
+\end{frame}
+
+
+\begin{frame}
+        \begin{figure}
+    \caption{Regression plot of polynomial order 2}
+    \includegraphics[width=\textwidth]{../../out/figures/timing_baseline_order_2}
+        \end{figure}
+\end{frame}
+
+
+\begin{frame}
+        \begin{figure}
+    \caption{Regression plot of polynomial order 3}
+    \includegraphics[width=\textwidth]{../../out/figures/timing_baseline_order_3}
+        \end{figure}
+\end{frame}
+
+
+\begin{frame}
+        \begin{figure}
+    \caption{Regression plot of polynomial order 4}
+    \includegraphics[width=\textwidth]{../../out/figures/timing_baseline_order_4}
+        \end{figure}
+\end{frame}
+
+
+\begin{frame}
+        \begin{figure}
+    \caption{Regression plot of polynomial order 5}
+    \includegraphics[width=\textwidth]{../../out/figures/timing_baseline_order_5}
+        \end{figure}
+\end{frame}
+
+
+\begin{frame}
+Conclusion
+\end{frame}
+
+
+\begin{frame}
+        As number of observations became bigger, the runtime slowed down and variated in each running. It is of same tendency with different numbers of polynomials.
+\end{frame}
+
+
 \begin{frame}[t]
-    \frametitle{heading here}
+    \frametitle{Technical facts}
     \begin{itemize}
-        \item<+-> Please cite this template as: \citet{GaudeckerEconProjectTemplates}
-        \item<+-> \citet{Schelling69} example in the code is taken from \citet{StachurskiSargent13}.
-        \item<+-> The decision rule of an agent is \input{formulas/regression_model}
+        \item<+-> Template cited from: \citet{GaudeckerEconProjectTemplates}
+        \item<+-> Former realization of Kallman filters was based on \citet{Gabler18}.
     \end{itemize}
     \note{~}
 \end{frame}
@@ -62,7 +144,6 @@
 
 \begin{frame}[allowframebreaks]
     \frametitle{References}
-    
     
     \bibliography{refs}
     
