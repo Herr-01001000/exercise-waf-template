@@ -46,8 +46,8 @@ source_encoding = "utf-8"
 master_doc = "index"
 
 # General information about the project.
-project = u"assignment-6-group-7"
-copyright = u"2019-, Ruizhuo Wan"
+project = u"Relationship between number of observations and runtime"
+copyright = u"2019-, Group 7"
 
 # The version info for the project you"re documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -196,7 +196,7 @@ latex_documents = [(
     "index",
     "project_documentation.tex",
     "Documentation of the assignment-6-group-7 project",
-    "Ruizhuo Wan",
+    "Group 7",
     "manual"
 )]
 
