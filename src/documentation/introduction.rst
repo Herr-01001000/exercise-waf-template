@@ -5,6 +5,8 @@
 Introduction
 ************
 
+This is our model about the relationship between the runtimes of update step of kalman filter and the number of observations. We built the model on the Waf template from Professor Hans-Martin von Gaudecker.
+
 Documentation on the rationale, Waf, and more background is at http://hmgaudecker.github.io/econ-project-templates/
 
 The Python version of the template uses a modified version of Stachurski's and Sargent's code accompanying their Online Course :cite:`StachurskiSargent13` for Schelling's (1969, :cite:`Schelling69`) segregation model as the running exmaple.
