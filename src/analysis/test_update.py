@@ -1,3 +1,6 @@
+"""This function is used for testing the update function.                          
+"""
+
 import sys
 import pytest
 import pandas as pd
@@ -54,7 +57,9 @@ meas_var_bwght = 0.8
 
 @pytest.fixture
 def setup_update():
-
+    """
+    Assigns elements of calculation process.
+    """
     out = {}
     out['states'] = states_np
     out['root_covs'] = root_covs_np
@@ -76,7 +81,9 @@ out_states, out_root_covs = pandas_batch_update(
 
 @pytest.fixture
 def expected_update():
-
+    """
+    Calculates expected results of kalman filter.
+    """
     out = {}
     out['mean'] = out_states.values
     out['cov'] = pd.concat(out_root_covs).values.reshape(nobs, nstates, nstates)
@@ -85,11 +92,17 @@ def expected_update():
 
 
 def test_fast_batch_update_mean(setup_update, expected_update):
+    """
+    Assertion on calculated and expected means.
+    """
     calc_mean, calc_root_cov = fast_batch_update(**setup_update)
     assert np.allclose(calc_mean, expected_update['mean'])
 
 
 def test_fast_batch_update_cov_values(setup_update, expected_update):
+    """
+    Assertion on calculated and expected covariances.
+    """
     calc_mean, calc_root_cov = fast_batch_update(**setup_update)
     assert np.allclose(calc_root_cov, expected_update['cov'])
 

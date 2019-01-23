@@ -1,11 +1,6 @@
-"""We tried numpy, numba and TensorFlow for speed improvements. On average,
-pandas took about 8 seconds, numpy took about 0.2 seconds, TensorFlow took
-about 0.08 seconds and numba took 0.007 seconds. The biggest improvement we
-achieved was about 1500 times faster with numba compared to pandas.
-
-In our experiments TensorFlow driven by GPU was not stably performing. We had 
-achieved at most 1000 times' speedup compared to pandas. The speed improvements
- varied when Tensorflow was used in different hardware environments.
+"""This function uses numba to speedup the pandas function. It calculates the
+   runtimes for update step of kalman filter and its corresponding observations.
+   The result of this function would be applied later in regression plot.
 """
 
 import sys
@@ -55,6 +50,9 @@ meas_var_bwght = 0.8
 
 
 def run_analysis(states, root_covs, measurements, loadings, meas_var):
+    """
+    Runtimes for update step of kalman filter and its corresponding observations.
+    """
     runtimes = pd.DataFrame(columns=['obs','times'])
     for i in range(len(states_np)):
         for j in range(11):

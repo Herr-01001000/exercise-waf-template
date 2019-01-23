@@ -1,11 +1,5 @@
-"""Draw simulated samples from two uncorrelated uniform variables
-(locations in two dimensions) for two types of agents and store
-them in a 3-dimensional NumPy array.
-
-*Note:* In principle, one would read the number of dimensions etc.
-from the "IN_MODEL_SPECS" file, this is to demonstrate the most basic
-use of *run_py_script* only.
-
+"""This function cleans the data from the chs_data.dta. It
+   prepares the dataset we use for further analysis.
 """
 
 import numpy as np
@@ -14,7 +8,11 @@ from bld.project_paths import project_paths_join as ppj
 
 
 def save_data(sample):
+    """
+    Save clean data as .csv file.
+    """
     sample.to_csv(ppj("OUT_DATA", "data_clean.csv"), sep=",")
+
 
 
 if __name__ == "__main__":

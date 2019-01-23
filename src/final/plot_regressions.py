@@ -1,11 +1,7 @@
-"""We tried numpy, numba and TensorFlow for speed improvements. On average,
-pandas took about 8 seconds, numpy took about 0.2 seconds, TensorFlow took
-about 0.08 seconds and numba took 0.007 seconds. The biggest improvement we
-achieved was about 1500 times faster with numba compared to pandas.
-
-In our experiments TensorFlow driven by GPU was not stably performing. We had 
-achieved at most 1000 times' speedup compared to pandas. The speed improvements
- varied when Tensorflow was used in different hardware environments.
+"""In this part of plotting, we used the regplot from seaborn to draw
+   regression plots in different polynomial orders with the runtimes
+   of fast_batch_update on the y-axis and the number of observations
+   (from 1 to 2207) on the x-axis.
 """
 
 
@@ -19,6 +15,9 @@ import matplotlib.pyplot as plt
 from bld.project_paths import project_paths_join as ppj
 
 def plot_regressions(runtimes, order, model_name):
+    """
+    This function is used for regression plots.
+    """
     sns.set(color_codes=True)
     sns.regplot(x='obs', y='times', data=runtimes, order=order, marker='.')
     plt.savefig(ppj("OUT_FIGURES", "timing_{}_order_{}.png".format(model_name, order)))
