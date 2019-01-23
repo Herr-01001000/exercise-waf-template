@@ -31,5 +31,5 @@ if __name__ == "__main__":
     with open(ppj("OUT_ANALYSIS", "timing_{}.pickle".format(model_name)), "rb") as in_file:
         runtimes = pickle.load(in_file)
 
-    for order in [1,2,3,4,5]:
+    for order in model["order"]:
         plot_regressions(runtimes, order, model_name)

@@ -12,7 +12,13 @@ def build(ctx):
                 ctx.path_to(ctx, 'OUT_ANALYSIS', 'timing_{}.pickle'.format(model)),
                 ctx.path_to(ctx, 'IN_MODEL_SPECS', '{}.json'.format(model))
             ],
-            target=ctx.path_to(ctx, 'OUT_FIGURES', 'timing_{}.png'.format(model)),
+            target=[
+                ctx.path_to(ctx, 'OUT_FIGURES', 'timing_{}_order_1.png'.format(model)),
+                ctx.path_to(ctx, 'OUT_FIGURES', 'timing_{}_order_2.png'.format(model)),
+                ctx.path_to(ctx, 'OUT_FIGURES', 'timing_{}_order_3.png'.format(model)),
+                ctx.path_to(ctx, 'OUT_FIGURES', 'timing_{}_order_4.png'.format(model)),
+                ctx.path_to(ctx, 'OUT_FIGURES', 'timing_{}_order_5.png'.format(model))
+            ],
             append=model,
             name='plot_regressions_{}'.format(model)
         )

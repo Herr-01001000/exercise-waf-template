@@ -3,5 +3,6 @@
     "meas_var_bwght": 0.8,
     "loadings_bwght_np": [1.0, 0, 0, 0, 0],
     "require_same_type": 4,
-    "rng_seed": 54321
+    "rng_seed": 54321,
+    "order": [1, 2, 3, 4, 5]
 }
