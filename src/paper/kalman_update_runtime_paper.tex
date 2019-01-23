@@ -1,0 +1,147 @@
+\documentclass[11pt, a4paper, leqno]{article}
+\usepackage{a4wide}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{float, afterpage, rotating, graphicx}
+\usepackage{epstopdf}
+\usepackage{longtable, booktabs, tabularx}
+\usepackage{fancyvrb, moreverb, relsize}
+\usepackage{eurosym, calc}
+% \usepackage{chngcntr}
+\usepackage{amsmath, amssymb, amsfonts, amsthm, bm}
+\usepackage{caption}
+\usepackage{mdwlist}
+\usepackage{xfrac}
+\usepackage{setspace}
+\usepackage{xcolor}
+\usepackage{subcaption}
+\usepackage{minibox}
+% \usepackage{pdf14} % Enable for Manuscriptcentral -- can't handle pdf 1.5
+% \usepackage{endfloat} % Enable to move tables / figures to the end. Useful for some submissions.
+
+
+
+\usepackage{natbib}
+\bibliographystyle{rusnat}
+
+
+
+
+\usepackage[unicode=true]{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    anchorcolor=black,
+    citecolor=black,
+    filecolor=black,
+    menucolor=black,
+    runcolor=black,
+    urlcolor=black
+}
+
+
+\widowpenalty=10000
+\clubpenalty=10000
+
+\setlength{\parskip}{1ex}
+\setlength{\parindent}{0ex}
+\setstretch{1.5}
+
+
+\begin{document}
+
+\title{Relation between Number of Observations and Runtime\thanks{Group 7, Uni Bonn. Email: \href{mailto:s6wehuuu@uni-bonn.com}{\nolinkurl{s6wehuuu [at] uni-bonn [dot] com}}.}}
+
+\author{Group 7: Wenxin Hu, Ruizhuo Wan, Yan Zhang, Xiaoran Wu, Tianfan Sun}
+
+\date{
+\today
+}
+
+\maketitle
+
+
+\begin{abstract}
+
+     In past assignments we realized Kalman filter and tried with multiple methods to achieve calculation speedups. In last assignment the most optimized speed-up was achieved with numba by 714 times. In this assignment we look into the relationships of runtime of the Kalman Filter of update step with the size of the dataset. After trying one to polynomials of order 1 to 5, we find the bigger the number of observations is, the more the runtime is.
+   
+
+\end{abstract}
+\clearpage
+
+\section{Model} % (fold)
+\label{sec:Model}
+
+The template we used is taken from \citet{GaudeckerEconProjectTemplates}.
+
+The introduction of the kilman filter is learned from \citet{Gabler18}. \\
+
+
+
+Specifically, we produce a regression plot with the runtime of our fast batch update function on the y axis and the number of observations on the x axis. For each number of observations we run eleven times and discard the first one, so we have ten data points for each number. Finally, after trying one to five polynomials, we find specific regression relationship between them. The bigger the number of observations is, the more the runtime is.\\
+
+   
+
+The regression model is the following:
+\input{formulas/regression_model}
+
+\clearpage
+
+
+\section{Figures} % (fold)
+\label{sec:Figures}
+
+
+\begin{figure}[H]
+    \caption{Regression plot of first degree polynomial in number of observations.}
+    
+    \includegraphics[width=\textwidth]{../../out/figures/timing_baseline_order_1}
+
+\end{figure}
+
+
+\begin{figure}[H]
+    \caption{Regression plot of second degree polynomial in number of observations.}
+    
+    \includegraphics[width=\textwidth]{../../out/figures/timing_baseline_order_2}
+\end{figure}
+
+
+\begin{figure}[H]
+    \caption{Regression plot of third degree polynomial in number of observations.}
+    
+    \includegraphics[width=\textwidth]{../../out/figures/timing_baseline_order_3}
+
+\end{figure}
+
+
+\begin{figure}[H]
+    \caption{Regression plot of fourth degree polynomial in number of observations.}
+    
+    \includegraphics[width=\textwidth]{../../out/figures/timing_baseline_order_4}
+
+\end{figure}
+
+
+\begin{figure}[H]
+    \caption{Regression plot of fifth degree polynomial in number of observations.}
+    
+    \includegraphics[width=\textwidth]{../../out/figures/timing_baseline_order_5}
+
+\end{figure}
+% section introduction (end)
+
+\clearpage
+
+
+\bibliography{refs}
+
+
+
+% \appendix
+
+% The chngctr package is needed for the following lines.
+% \counterwithin{table}{section}
+% \counterwithin{figure}{section}
+
+\end{document}
